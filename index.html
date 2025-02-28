@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoRead - AI eBook to Audiobook</title>
+    <style>
+        /* Modern Red & Orange Theme Styles */
+        :root {
+            --primary: #ef4444;
+            --primary-light: #f97316;
+            --background: #ffffff;
+            --light-bg: #f9fafb;
+            --text: #1f2937;
+            --text-light: #4b5563;
+            --border: #e5e7eb;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            line-height: 1.7;
+            background-color: var(--background);
+        }
+
+        header {
+            background: var(--background);
+            color: var(--text);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        header .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        header .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        header .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6rem 5%;
+            background: linear-gradient(to right, #fff7ed, #fef2f2);
+            gap: 2rem;
+        }
+
+        .hero-content {
+            max-width: 50%;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-light);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.9rem 2.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        .features {
+            background-color: var(--background);
+        }
+
+        .specs {
+            background-color: var(--light-bg);
+            border-radius: 30px;
+            margin: 0 5%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .feature-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: var(--background);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-width: 300px;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .card ul li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "✓";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* How It Works section styles */
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 30%;
+            right: -10%;
+            width: 20%;
+            height: 2px;
+            background: var(--primary-light);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .step:not(:last-child)::after {
+                display: block;
+            }
+        }
+
+        .step-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff5f5;
+            border-radius: 50%;
+            color: var(--primary);
+        }
+
+        .step-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .step p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* FAQ Section Styles */
+        .faq {
+            background-color: var(--light-bg);
+            padding: 6rem 5%;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            background: var(--background);
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 1.5rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 400px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 1rem;
+        }
+
+        /* Waitlist section styles */
+        .waitlist {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .waitlist-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .waitlist h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .waitlist p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .waitlist-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-group button {
+            background: white;
+            color: var(--primary);
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background: var(--light-bg);
+            transform: translateY(-2px);
+        }
+
+        .form-disclaimer {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .form-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 4rem 5%;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .feature-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                max-width: 100%;
+            }
+
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            header .nav-links {
+                margin-top: 1rem;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">EchoRead</div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#waitlist">Join Waitlist</a></li>
+        </ul>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Turn eBooks into Audiobooks with AI</h1>
+            <p>Experience your favorite books in a whole new way. EchoRead uses advanced AI to convert eBooks into
+                natural-sounding audiobooks instantly.</p>
+            <a href="#waitlist" class="cta-button">Join Waitlist</a>
+        </div>
+        <div class="hero-image">
+            <img src="/api/placeholder/400/320" alt="EchoRead App Screenshot">
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Features</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <h3>AI-Powered Narration</h3>
+                <p>Our AI delivers natural, human-like voices for an immersive listening experience.</p>
+            </div>
+            <div class="card">
+                <h3>Multiple Formats</h3>
+                <p>Supports PDF, EPUB, MOBI, and more. Convert any eBook format effortlessly.</p>
+            </div>
+            <div class="card">
+                <h3>Customizable Voices</h3>
+                <p>Choose from a variety of voices and accents to match your preferences.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="specs">
+        <h2>How It Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </div>
+                <h3>Upload</h3>
+                <p>Drop your eBook in any format</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                        </path>
+                    </svg>
+                </div>
+                <h3>Customize</h3>
+                <p>Choose voice, speed and tone</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <h3>Download</h3>
+                <p>Get your audiobook in minutes</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="waitlist" class="waitlist">
+        <div class="waitlist-container">
+            <h2>Join Our Waiting List</h2>
+            <p>Be the first to know when EchoRead launches. Get early access and exclusive offers.</p>
+
+            <form class="waitlist-form">
+                <div class="form-group">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="cta-button">Join Waitlist</button>
+                </div>
+                <p class="form-disclaimer">We respect your privacy. No spam, ever.</p>
+            </form>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">How accurate is the AI narration?</div>
+                <div class="faq-answer">
+                    <p>Our AI narration is highly accurate, with over 98% pronunciation accuracy for standard English
+                        text. The system handles complex words, proper nouns, and various dialects with impressive
+                        precision. For specialized content like scientific or technical material, you can also customize
+                        pronunciations.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I use EchoRead for commercial purposes?</div>
+                <div class="faq-answer">
+                    <p>Yes, our service includes licenses for commercial use. This means you can use our service to
+                        create audiobooks for sale, podcasts, educational content, or any other commercial application.
+                        For large-scale commercial usage, please contact our sales team for custom enterprise solutions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What file formats do you support for the output?</div>
+                <div class="faq-answer">
+                    <p>EchoRead generates audiobooks in MP3, WAV, and M4B formats. We also offer AAC format with chapter
+                        markers for enhanced navigation. All audio files are optimized for quality and file size, making
+                        them perfect for mobile listening.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How long does it take to convert an eBook?</div>
+                <div class="faq-answer">
+                    <p>Conversion time depends on the length of your eBook. As a general guideline, a 300-page novel
+                        (approximately 80,000 words) takes about 10-15 minutes to convert. Our system processes multiple
+                        books simultaneously, so you can queue up several conversions at once without additional waiting
+                        time.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I customize the voice and reading speed?</div>
+                <div class="faq-answer">
+                    <p>Absolutely! EchoRead offers extensive customization options. You can select from over 50
+                        different voices spanning various accents and tones. You can also adjust reading speed, add
+                        pauses between paragraphs or chapters, and even customize emphasis for specific words or
+                        phrases.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 EchoRead. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // FAQ Toggle Functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                // Close all other open FAQ items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle the current FAQ item
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
