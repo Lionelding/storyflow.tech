@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EchoRead - AI eBook to Audiobook</title>
+    <title>Storyflow - AI eBook to Audiobook</title>
     <style>
         /* Modern Red & Orange Theme Styles */
         :root {
@@ -337,7 +337,7 @@
 
         /* Waitlist section styles */
         .waitlist {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            background: linear-gradient(135deg, #f87171, #fdba74);
             color: white;
             padding: 6rem 5%;
             text-align: center;
@@ -444,7 +444,7 @@
 
 <body>
     <header>
-        <div class="logo">EchoRead</div>
+        <div class="logo">Storyflow</div>
         <ul class="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
@@ -456,12 +456,12 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Turn eBooks into Audiobooks with AI</h1>
-            <p>Experience your favorite books in a whole new way. EchoRead uses advanced AI to convert eBooks into
+            <p>Experience your favorite books in a whole new way. Storyflow uses advanced AI to convert eBooks into
                 natural-sounding audiobooks instantly.</p>
             <a href="#waitlist" class="cta-button">Join Waitlist</a>
         </div>
         <div class="hero-image">
-            <img src="/api/placeholder/400/320" alt="EchoRead App Screenshot">
+            <img src="/api/placeholder/400/320" alt="Storyflow App Screenshot">
         </div>
     </section>
 
@@ -485,43 +485,49 @@
 
     <section id="how-it-works" class="specs">
         <h2>How It Works</h2>
+        <style>
+            /* Override the connecting line between steps */
+            .step:not(:last-child)::after {
+                display: none !important;
+            }
+        </style>
         <div class="steps-container">
             <div class="step">
                 <div class="step-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                        <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                        <path d="M12 12v9"></path>
+                        <path d="m16 16-4-4-4 4"></path>
                     </svg>
                 </div>
                 <h3>Upload</h3>
-                <p>Drop your eBook in any format</p>
+                <p>Upload your eBook in any format</p>
             </div>
             <div class="step">
                 <div class="step-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"></circle>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </div>
+                <h3>Convert</h3>
+                <p>Our AI transforms text to audio</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
                         <path
-                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
                         </path>
                     </svg>
                 </div>
-                <h3>Customize</h3>
-                <p>Choose voice, speed and tone</p>
-            </div>
-            <div class="step">
-                <div class="step-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                </div>
-                <h3>Download</h3>
-                <p>Get your audiobook in minutes</p>
+                <h3>Listen</h3>
+                <p>Enjoy your audiobook anywhere</p>
             </div>
         </div>
     </section>
@@ -529,15 +535,42 @@
     <section id="waitlist" class="waitlist">
         <div class="waitlist-container">
             <h2>Join Our Waiting List</h2>
-            <p>Be the first to know when EchoRead launches. Get early access and exclusive offers.</p>
+            <p>Be the first to know when Storyflow launches. Get early access and exclusive offers.</p>
 
-            <form class="waitlist-form">
-                <div class="form-group">
-                    <input type="email" placeholder="Your email address" required>
-                    <button type="submit" class="cta-button">Join Waitlist</button>
+            <div style="margin: 2rem auto;">
+                <a href="https://forms.google.com" target="_blank" class="cta-button">Join Waitlist</a>
+            </div>
+            <p class="form-disclaimer">We respect your privacy. No spam, ever.</p>
+        </div>
+    </section>
+
+    <section id="team" class="specs">
+        <h2>Meet Our Team</h2>
+        <div
+            style="display: flex; flex-direction: row; align-items: center; max-width: 900px; margin: 0 auto; gap: 3rem;">
+            <div style="flex: 3;">
+                <h3 style="font-size: 1.75rem; color: var(--primary); margin-bottom: 1rem;">Passionate Innovators</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                    At Storyflow, our team of AI specialists, linguists, and book lovers are united by a single mission:
+                    to make literature more accessible through technology.
+                </p>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                    Founded in 2023 by Sarah Chen, a former audiobook producer and AI researcher, Storyflow combines
+                    cutting-edge voice synthesis with a deep appreciation for storytelling.
+                </p>
+                <p style="font-size: 1.1rem;">
+                    Our diverse team brings expertise from top tech companies and publishing houses, creating an AI
+                    solution that truly understands the nuances of narration and the needs of modern readers.
+                </p>
+            </div>
+            <div style="flex: 2; text-align: center;">
+                <div
+                    style="border-radius: 50%; overflow: hidden; width: 250px; height: 250px; margin: 0 auto; box-shadow: var(--shadow);">
+                    <img src="/api/placeholder/250/250" alt="Liqiang Ding, Founder of Storyflow"
+                        style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
-                <p class="form-disclaimer">We respect your privacy. No spam, ever.</p>
-            </form>
+                <p style="margin-top: 1rem; font-weight: 600; color: var(--primary);">Liqiang Ding, Founder</p>
+            </div>
         </div>
     </section>
 
@@ -555,7 +588,7 @@
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Can I use EchoRead for commercial purposes?</div>
+                <div class="faq-question">Can I use Storyflow for commercial purposes?</div>
                 <div class="faq-answer">
                     <p>Yes, our service includes licenses for commercial use. This means you can use our service to
                         create audiobooks for sale, podcasts, educational content, or any other commercial application.
@@ -567,7 +600,8 @@
             <div class="faq-item">
                 <div class="faq-question">What file formats do you support for the output?</div>
                 <div class="faq-answer">
-                    <p>EchoRead generates audiobooks in MP3, WAV, and M4B formats. We also offer AAC format with chapter
+                    <p>Storyflow generates audiobooks in MP3, WAV, and M4B formats. We also offer AAC format with
+                        chapter
                         markers for enhanced navigation. All audio files are optimized for quality and file size, making
                         them perfect for mobile listening.</p>
                 </div>
@@ -586,7 +620,7 @@
             <div class="faq-item">
                 <div class="faq-question">Can I customize the voice and reading speed?</div>
                 <div class="faq-answer">
-                    <p>Absolutely! EchoRead offers extensive customization options. You can select from over 50
+                    <p>Absolutely! Storyflow offers extensive customization options. You can select from over 50
                         different voices spanning various accents and tones. You can also adjust reading speed, add
                         pauses between paragraphs or chapters, and even customize emphasis for specific words or
                         phrases.</p>
@@ -596,7 +630,77 @@
     </section>
 
     <footer>
-        <p>&copy; 2023 EchoRead. All rights reserved.</p>
+        <div class="footer-content" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <div
+                style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
+                <div class="footer-logo" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Storyflow
+                </div>
+                <div class="social-icons" style="display: flex; gap: 1.5rem;">
+                    <a href="#" style="color: white; font-size: 1.25rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Better TikTok icon -->
+                            <path
+                                d="M12.53 2C12.53 2 12.97 8.44 18.14 9.11V12.78C18.14 12.78 15.34 12.23 12.53 10.04V18.05C12.53 22.11 6.5 24.15 3.58 20.83C1.41 18.38 1.67 13.99 7.01 12.87C7.01 12.87 8.5 12.85 9.3 13.23V17.13C9.3 17.13 8.72 16.95 8.26 17.06C7.8 17.17 6.49 17.55 6.49 19C6.49 21.2 9.61 21.45 10.08 18.29C10.08 18.29 10.13 14.36 10.13 10.11H13.53C13.53 10.11 13.41 15.23 19 16.36V20.3C19 20.3 13.47 20.11 12.53 15V7.11C12.53 7.11 8.99 10.89 5.38 11.07V7.11C5.38 7.11 9 7.3 12.53 2Z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#" style="color: white; font-size: 1.25rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- YouTube icon -->
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                            </path>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                        </svg>
+                    </a>
+                    <a href="#" style="color: white; font-size: 1.25rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#" style="color: white; font-size: 1.25rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 1.5rem;">
+                <div style="flex: 1; min-width: 200px; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Contact</h3>
+                    <p style="margin-bottom: 0.5rem;">info@storyflow.com</p>
+                    <p style="margin-bottom: 0.5rem;">123 AI Avenue, San Francisco, CA</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Legal</h3>
+                    <p style="margin-bottom: 0.5rem;"><a href="#" style="color: white; text-decoration: none;">Privacy
+                            Policy</a></p>
+                    <p style="margin-bottom: 0.5rem;"><a href="#" style="color: white; text-decoration: none;">Terms of
+                            Service</a></p>
+                </div>
+                <div style="flex: 1; min-width: 200px; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Company</h3>
+                    <p style="margin-bottom: 0.5rem;"><a href="#team" style="color: white; text-decoration: none;">About
+                            Us</a></p>
+                    <p style="margin-bottom: 0.5rem;"><a href="#"
+                            style="color: white; text-decoration: none;">Careers</a></p>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                <p>&copy; 2023 Storyflow. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -628,6 +732,7 @@
                 item.classList.toggle('active');
             });
         });
+
     </script>
 </body>
 
