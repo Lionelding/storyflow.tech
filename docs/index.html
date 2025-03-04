@@ -5,595 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Storyflow - AI eBook to Audiobook</title>
-    <style>
-        /* Modern Red & Orange Theme Styles */
-        :root {
-            --primary: #ef4444;
-            --primary-light: #f97316;
-            --background: #ffffff;
-            --light-bg: #f9fafb;
-            --text: #1f2937;
-            --text-light: #4b5563;
-            --border: #e5e7eb;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text);
-            line-height: 1.7;
-            background-color: var(--background);
-        }
-
-        header {
-            background: var(--background);
-            color: var(--text);
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        header .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        header .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-        }
-
-        header .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        header .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .hero {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6rem 5%;
-            background: linear-gradient(to right, #fff7ed, #fef2f2);
-            gap: 2rem;
-        }
-
-        .hero-content {
-            max-width: 50%;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            color: var(--text-light);
-        }
-
-        .cta-button {
-            background: var(--primary);
-            color: white;
-            padding: 0.9rem 2.5rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-
-        section {
-            padding: 6rem 5%;
-        }
-
-        .features {
-            background-color: var(--background);
-        }
-
-        .specs {
-            background-color: var(--light-bg);
-            border-radius: 30px;
-            margin: 0 5%;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .feature-cards {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: var(--background);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            max-width: 300px;
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .card p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-        }
-
-        .card ul {
-            list-style: none;
-            padding: 0;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-
-        .card ul li {
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .card ul li::before {
-            content: "✓";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        /* How It Works section styles */
-        .steps-container {
-            display: flex;
-            justify-content: space-around;
-            max-width: 900px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .step {
-            flex: 1;
-            min-width: 200px;
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .step:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-        }
-
-        .step:not(:last-child)::after {
-            content: "";
-            position: absolute;
-            top: 30%;
-            right: -10%;
-            width: 20%;
-            height: 2px;
-            background: var(--primary-light);
-            display: none;
-        }
-
-        @media (min-width: 768px) {
-            .step:not(:last-child)::after {
-                display: block;
-            }
-        }
-
-        .step-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #fff5f5;
-            border-radius: 50%;
-            color: var(--primary);
-        }
-
-        .step-icon svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-        }
-
-        .step p {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin: 0;
-        }
-
-        /* FAQ Section Styles */
-        .faq {
-            background-color: var(--light-bg);
-            padding: 6rem 5%;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border-radius: 12px;
-            background: var(--background);
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .faq-question {
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--text);
-            transition: background-color 0.3s;
-        }
-
-        .faq-question:hover {
-            background-color: rgba(239, 68, 68, 0.05);
-        }
-
-        .faq-question::after {
-            content: "+";
-            font-size: 1.5rem;
-            color: var(--primary);
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding: 0 1.5rem;
-            line-height: 1.6;
-            color: var(--text-light);
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 400px;
-            padding: 0 1.5rem 1.5rem;
-        }
-
-        footer {
-            background: var(--text);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            font-size: 1rem;
-        }
-
-        /* Waitlist section styles */
-        .waitlist {
-            background: linear-gradient(135deg, #f87171, #fdba74);
-            color: white;
-            padding: 6rem 5%;
-            text-align: center;
-        }
-
-        .waitlist-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .waitlist h2 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-
-        .waitlist p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        .waitlist-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-group input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .form-group button {
-            background: white;
-            color: var(--primary);
-            border: none;
-            cursor: pointer;
-        }
-
-        .form-group button:hover {
-            background: var(--light-bg);
-            transform: translateY(-2px);
-        }
-
-        .form-disclaimer {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-top: 0.5rem;
-        }
-
-        @media (max-width: 640px) {
-            .form-group {
-                flex-direction: column;
-            }
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 4rem 5%;
-            }
-
-            .hero-content {
-                max-width: 100%;
-                margin-bottom: 2rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .feature-cards {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .card {
-                max-width: 100%;
-            }
-
-            header {
-                flex-direction: column;
-                padding: 1rem;
-            }
-
-            header .nav-links {
-                margin-top: 1rem;
-                padding: 0;
-            }
-        }
-
-        /* Optimized Player Styles */
-        .players-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .player-container {
-            background: rgba(255, 255, 255, 0.9);
-            width: 300px;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            margin: 0 10px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .album-cover {
-            width: 240px;
-            height: 240px;
-            margin: 0 auto 15px;
-            border-radius: 10px;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .album-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .album-cover::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.05);
-            z-index: 1;
-        }
-
-        .song-info {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .song-title {
-            font-size: 1.1em;
-            font-weight: 600;
-            margin-bottom: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: #1f2937;
-        }
-
-        .song-artist {
-            font-size: 0.9em;
-            opacity: 0.8;
-            color: #4b5563;
-        }
-
-        .player-controls-wrapper {
-            display: flex;
-            align-items: center;
-            padding: 0 5px;
-        }
-
-        .progress-container {
-            flex-grow: 1;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            height: 6px;
-            cursor: pointer;
-            margin: 0 10px;
-        }
-
-        .progress {
-            background: #ef4444;
-            border-radius: 5px;
-            height: 100%;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .player-controls {
-            display: flex;
-            justify-content: center;
-            padding: 8px 0;
-        }
-
-        .control-btn {
-            background: transparent;
-            border: none;
-            color: #ef4444;
-            font-size: 22px;
-            margin: 0 10px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            padding: 0;
-        }
-
-        .control-btn:hover {
-            transform: scale(1.2);
-            color: #f97316;
-        }
-
-        .play-btn {
-            font-size: 32px;
-        }
-
-        .time-container {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75em;
-            color: #4b5563;
-            margin-top: 5px;
-        }
-
-        @media (max-width: 992px) {
-            .players-wrapper {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .player-container {
-                width: 80%;
-                max-width: 350px;
-                margin-bottom: 30px;
-            }
-        }
-    </style>
+    <!-- External CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <div class="menu-overlay" id="menuOverlay"></div>
     <header>
         <div class="logo">Storyflow</div>
-        <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#audiobooks">Sample Audiobooks</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#waitlist">Join Waitlist</a></li>
-        </ul>
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#audiobooks">Sample Audiobooks</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#waitlist">Join Waitlist</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section class="hero">
@@ -610,12 +43,11 @@
     <section id="features" class="features">
         <h2>Features</h2>
         <div class="feature-cards">
+            <!-- Feature cards using a consistent structure -->
             <div class="card">
                 <h3>Anything to audiobooks</h3>
-                <p>
-                    Short on time? Transform any ebook into an audiobook and dive into stories on your commute, at the
-                    gym, or while parenting—reading made effortless!
-                </p>
+                <p>Short on time? Transform any ebook into an audiobook and dive into stories on your commute, at the
+                    gym, or while parenting—reading made effortless!</p>
             </div>
             <div class="card">
                 <h3>Voices with human touch</h3>
@@ -624,9 +56,8 @@
             </div>
             <div class="card">
                 <h3>Sense of belonging</h3>
-                <p>Download your audiobook as MP3 or M4B. Ready to
-                    listen anytime, anywhere. They are yours to keep forever.
-                </p>
+                <p>Download your audiobook as MP3 or M4B. Ready to listen anytime, anywhere. They are yours to keep
+                    forever.</p>
             </div>
             <div class="card">
                 <h3>Pay as you go</h3>
@@ -638,13 +69,8 @@
 
     <section id="how-it-works" class="specs">
         <h2>How It Works</h2>
-        <style>
-            /* Override the connecting line between steps */
-            .step:not(:last-child)::after {
-                display: none !important;
-            }
-        </style>
         <div class="steps-container">
+            <!-- Each step with a consistent pattern -->
             <div class="step">
                 <div class="step-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -686,76 +112,88 @@
     </section>
 
     <section id="audiobooks" class="audiobooks-section">
-        <h2>Sample Audiobooks</h2>
-        <p style="text-align: center;">Listen to samples of our AI-generated audiobooks. Experience the natural-sounding
-            narration that brings
-            stories to life.</p>
+        <h2>Experience Premium Audio</h2>
+        <p class="section-description">Listen and compare to discover the rich depth our audio technology delivers.</p>
 
-        <div class="players-wrapper">
-            <div class="players-wrapper">
-                <!-- Player 1 -->
-                <div class="player-container" id="player-1">
-                    <div class="album-cover">
-                        <img id="album-img-1" src="/api/placeholder/300/300" alt="Book Cover">
-                    </div>
-                    <div class="song-info">
-                        <div class="song-title">Pride and Prejudice - Chapter 1</div>
-                        <div class="song-artist">Jane Austen</div>
-                    </div>
-                    <div class="player-controls-wrapper">
-                        <button class="control-btn" id="prev-btn-1">⏮</button>
-                        <div class="progress-container" id="progress-container-1">
-                            <div class="progress" id="progress-1"></div>
+        <!-- Audio Settings Controls -->
+        <div class="audio-settings">
+            <div class="settings-label">
+                <div class="gear-icon">⚙️</div>
+                <span>Audio Settings:</span>
+            </div>
+            <div class="dropdown" id="quality-dropdown">
+                <span class="selected-option">Premium</span>
+                <span>▼</span>
+                <div class="dropdown-content">
+                    <a href="#" data-value="standard">Standard</a>
+                    <a href="#" data-value="premium">Premium</a>
+                </div>
+            </div>
+            <div class="dropdown" id="voice-dropdown">
+                <span class="selected-option">Male</span>
+                <span>▼</span>
+                <div class="dropdown-content">
+                    <a href="#" data-value="male">Male</a>
+                    <a href="#" data-value="female">Female</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <!-- Audio cards with a consistent structure -->
+            <div class="audio-card card">
+                <div class="card-image">
+                    <img src="/api/placeholder/300/200" alt="Podcast thumbnail">
+                </div>
+                <div class="card-content">
+                    <div class="card-type">Podcast</div>
+                    <div class="card-pages">32 Minutes</div>
+                    <div class="card-title">Science Today: Episode 42</div>
+                    <div class="playback-controls">
+                        <div class="play-button" data-track="1" aria-label="Play">▶</div>
+                        <div class="download-button" data-track="1" aria-label="Download">↓</div>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
                         </div>
-                        <button class="control-btn play-btn" id="play-btn-1">▶</button>
-                    </div>
-                    <div class="time-container">
-                        <span id="current-time-1">0:00</span>
-                        <span id="duration-1">0:00</span>
+                        <div class="time-display">0:00 / 0:00</div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Player 2 -->
-                <div class="player-container" id="player-2">
-                    <div class="album-cover">
-                        <img id="album-img-2" src="/api/placeholder/300/300" alt="Book Cover">
-                    </div>
-                    <div class="song-info">
-                        <div class="song-title">The Great Gatsby - Chapter 1</div>
-                        <div class="song-artist">F. Scott Fitzgerald</div>
-                    </div>
-                    <div class="player-controls-wrapper">
-                        <button class="control-btn" id="prev-btn-2">⏮</button>
-                        <div class="progress-container" id="progress-container-2">
-                            <div class="progress" id="progress-2"></div>
+            <div class="audio-card card">
+                <div class="card-image">
+                    <img src="./assets/books/TheTimeMachine_cover.jpg" alt="Audiobook thumbnail">
+                </div>
+                <div class="card-content">
+                    <div class="card-type">Audiobook</div>
+                    <div class="card-pages">245 Minutes</div>
+                    <div class="card-title">The Time Machine (Chapter 2)</div>
+                    <div class="playback-controls">
+                        <div class="play-button" data-track="2" aria-label="Play">▶</div>
+                        <div class="download-button" data-track="2" aria-label="Download">↓</div>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
                         </div>
-                        <button class="control-btn play-btn" id="play-btn-2">▶</button>
-                    </div>
-                    <div class="time-container">
-                        <span id="current-time-2">0:00</span>
-                        <span id="duration-2">0:00</span>
+                        <div class="time-display">0:00 / 0:00</div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Player 3 -->
-                <div class="player-container" id="player-3">
-                    <div class="album-cover">
-                        <img id="album-img-3" src="/api/placeholder/300/300" alt="Book Cover">
-                    </div>
-                    <div class="song-info">
-                        <div class="song-title">Sherlock Holmes - A Study in Scarlet</div>
-                        <div class="song-artist">Arthur Conan Doyle</div>
-                    </div>
-                    <div class="player-controls-wrapper">
-                        <button class="control-btn" id="prev-btn-3">⏮</button>
-                        <div class="progress-container" id="progress-container-3">
-                            <div class="progress" id="progress-3"></div>
+            <div class="audio-card card">
+                <div class="card-image">
+                    <img src="/api/placeholder/300/200" alt="Learning course thumbnail">
+                </div>
+                <div class="card-content">
+                    <div class="card-type">Course</div>
+                    <div class="card-pages">18 Minutes</div>
+                    <div class="card-title">Effective Communication</div>
+                    <div class="playback-controls">
+                        <div class="play-button" data-track="3" aria-label="Play">▶</div>
+                        <div class="download-button" data-track="3" aria-label="Download">↓</div>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
                         </div>
-                        <button class="control-btn play-btn" id="play-btn-3">▶</button>
-                    </div>
-                    <div class="time-container">
-                        <span id="current-time-3">0:00</span>
-                        <span id="duration-3">0:00</span>
+                        <div class="time-display">0:00 / 0:00</div>
                     </div>
                 </div>
             </div>
@@ -767,7 +205,7 @@
             <h2>Join Our Waiting List</h2>
             <p>Be the first to know when Storyflow launches. Get early access and exclusive offers.</p>
 
-            <div style="margin: 2rem auto;">
+            <div class="cta-container">
                 <a href="https://forms.gle/9aH7fwmFr3FkgYnH8" target="_blank" class="cta-button">Join Waitlist</a>
             </div>
             <p class="form-disclaimer">We respect your privacy. No spam, ever.</p>
@@ -776,26 +214,23 @@
 
     <section id="team" class="specs">
         <h2>Hi there!</h2>
-        <div
-            style="display: flex; flex-direction: row; align-items: center; max-width: 900px; margin: 0 auto; gap: 3rem;">
-            <div style="flex: 3;">
-                <h3 style="font-size: 1.75rem; color: var(--primary); margin-bottom: 1rem;">About storyflow</h3>
-                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-                    "Hi there! I’m Liqiang. I’ve always loved getting lost in a good book, but as someone juggling daily
+        <div class="team-container">
+            <div class="team-description">
+                <h3>About storyflow</h3>
+                <p>
+                    "Hi there! I'm Liqiang. I've always loved getting lost in a good book, but as someone juggling daily
                     routines—like housecleaning or driving to work—I wished I could turn those mundane moments into
                     storytime. That spark of frustration led to Storyflow. Over the past two years, what started as a
-                    personal experiment (fueled by grocery-store commutes!) has grown into a project I’m thrilled to
-                    share. My hope? That it lets you reclaim those ‘in-between’ moments and turn them into adventures.
+                    personal experiment (fueled by grocery-store commutes!) has grown into a project I'm thrilled to
+                    share. My hope? That it lets you reclaim those 'in-between' moments and turn them into adventures.
                     Happy listening!"
                 </p>
             </div>
-            <div style="flex: 2; text-align: center;">
-                <div
-                    style="border-radius: 50%; overflow: hidden; width: 250px; height: 250px; margin: 0 auto; box-shadow: var(--shadow);">
-                    <img src="./assets/profile.jpg" alt="Liqiang Ding, Founder of Storyflow"
-                        style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="team-photo">
+                <div class="profile-image">
+                    <img src="./assets/profile.jpg" alt="Liqiang Ding, Founder of Storyflow">
                 </div>
-                <p style="margin-top: 1rem; font-weight: 600; color: black;">Liqiang Ding, Founder</p>
+                <p class="profile-name">Liqiang Ding, Founder</p>
             </div>
         </div>
     </section>
@@ -803,21 +238,19 @@
     <section id="faq" class="faq">
         <h2>Frequently Asked Questions</h2>
         <div class="faq-container">
+            <!-- Accordion items with a consistent pattern -->
             <div class="faq-item">
                 <div class="faq-question">How can I listen to my audiobooks offline?</div>
                 <div class="faq-answer">
-                    <p>Your audiobooks belong to you after conversion. You can download and enjoy them
-                        on
-                        your laptop, phone, or MP3
-                        player anytime, anywhere. No internet is required.</p>
+                    <p>Your audiobooks belong to you after conversion. You can download and enjoy them on
+                        your laptop, phone, or MP3 player anytime, anywhere. No internet is required.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Which file formats are supported for conversion?</div>
                 <div class="faq-answer">
                     <p>Right now, Storyflow supports PDF and EPUB files. We're always working to support more formats,
-                        so if
-                        there's a specific file type you'd like us to include, let us know—we'd love to hear your
+                        so if there's a specific file type you'd like us to include, let us know—we'd love to hear your
                         suggestions!</p>
                 </div>
             </div>
@@ -825,27 +258,23 @@
                 <div class="faq-question">Which audio formats are available after conversion?</div>
                 <div class="faq-answer">
                     <p>Your converted audio is delivered as an MP3 file, making it compatible with almost any device.
-                        We’re also exploring support for more formats in the future!</p>
+                        We're also exploring support for more formats in the future!</p>
                 </div>
             </div>
-
             <div class="faq-item">
                 <div class="faq-question">In which languages can I upload files?</div>
                 <div class="faq-answer">
                     <p>Storyflow is optimized for English. While our AI can process other languages, accuracy and
-                        pronunciation may vary. Stay tuned—we’re working hard to add more language support soon!</p>
+                        pronunciation may vary. Stay tuned—we're working hard to add more language support soon!</p>
                 </div>
             </div>
-
             <div class="faq-item">
                 <div class="faq-question">How much does the conversation cost?</div>
                 <div class="faq-answer">
                     <p>The one-time cost is calculated based on the number of characters in your file. After uploading,
-                        you'll see the exact cost displayed.
-                    </p>
+                        you'll see the exact cost displayed.</p>
                 </div>
             </div>
-
             <div class="faq-item">
                 <div class="faq-question">How long does the conversion take?</div>
                 <div class="faq-answer">
@@ -853,48 +282,40 @@
                         estimated processing time.</p>
                 </div>
             </div>
-
             <div class="faq-item">
                 <div class="faq-question">What happens to my data?</div>
                 <div class="faq-answer">
                     <p>All data transfers use <strong>encrypted connections</strong> (SSL/TLS) to protect your
                         files. Storyflow does not store any user data. Everything you upload will be securely deleted
-                        after
-                        processing. </p>
+                        after processing.</p>
                 </div>
             </div>
-
-
         </div>
     </section>
 
     <footer>
-        <div class="footer-content" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-            <div
-                style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
-                <div class="footer-logo" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Storyflow
-                </div>
-                <div class="social-icons" style="display: flex; gap: 1.5rem;">
-                    <a href="#" style="color: white; font-size: 1.25rem;">
+        <div class="footer-content">
+            <div class="footer-header">
+                <div class="footer-logo">Storyflow</div>
+                <div class="social-icons">
+                    <a href="#" aria-label="TikTok">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <!-- Better TikTok icon -->
                             <path
                                 d="M12.53 2C12.53 2 12.97 8.44 18.14 9.11V12.78C18.14 12.78 15.34 12.23 12.53 10.04V18.05C12.53 22.11 6.5 24.15 3.58 20.83C1.41 18.38 1.67 13.99 7.01 12.87C7.01 12.87 8.5 12.85 9.3 13.23V17.13C9.3 17.13 8.72 16.95 8.26 17.06C7.8 17.17 6.49 17.55 6.49 19C6.49 21.2 9.61 21.45 10.08 18.29C10.08 18.29 10.13 14.36 10.13 10.11H13.53C13.53 10.11 13.41 15.23 19 16.36V20.3C19 20.3 13.47 20.11 12.53 15V7.11C12.53 7.11 8.99 10.89 5.38 11.07V7.11C5.38 7.11 9 7.3 12.53 2Z">
                             </path>
                         </svg>
                     </a>
-                    <a href="#" style="color: white; font-size: 1.25rem;">
+                    <a href="#" aria-label="YouTube">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <!-- YouTube icon -->
                             <path
                                 d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
                             </path>
                             <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
                         </svg>
                     </a>
-                    <a href="#" style="color: white; font-size: 1.25rem;">
+                    <a href="#" aria-label="Twitter">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -902,7 +323,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" style="color: white; font-size: 1.25rem;">
+                    <a href="#" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
@@ -914,220 +335,119 @@
                 </div>
             </div>
 
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 1.5rem;">
-                <div style="flex: 1; min-width: 200px; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Contact</h3>
-                    <p style="margin-bottom: 0.5rem;">info@storyflow.com</p>
-                    <p style="margin-bottom: 0.5rem;">Montreal, Canada</p>
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>info@storyflow.com</p>
+                    <p>Montreal, Canada</p>
                 </div>
-                <div style="flex: 1; min-width: 200px; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Legal</h3>
-                    <p style="margin-bottom: 0.5rem;"><a href="./privacy.html"
-                            style="color: white; text-decoration: none;">Privacy
-                            Policy</a></p>
-                    <p style="margin-bottom: 0.5rem;"><a href="./terms_of_service.html"
-                            style="color: white; text-decoration: none;">Terms of
-                            Service</a></p>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <p><a href="./privacy.html">Privacy Policy</a></p>
+                    <p><a href="./terms_of_service.html">Terms of Service</a></p>
                 </div>
             </div>
 
-            <div style="text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+            <div class="footer-copyright">
                 <p>&copy; 2025 Storyflow. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <!-- PDF Popup -->
+    <div class="pdf-popup" id="pdfPopup">
+        <div class="pdf-container">
+            <div class="pdf-header">
+                <div class="pdf-title" id="pdfTitle">Document Title</div>
+                <div class="pdf-close" id="pdfClose" aria-label="Close PDF">×</div>
+            </div>
+            <div class="pdf-content" id="pdfContent">
+                <iframe id="pdfFrame" src="about:blank" title="PDF Viewer"></iframe>
+            </div>
+            <div class="pdf-footer">
+                <div class="pdf-controls">
+                    <button class="pdf-button" id="prevPage">Previous</button>
+                    <button class="pdf-button" id="nextPage">Next</button>
+                </div>
+                <div class="pdf-page-info">
+                    Page <span id="currentPage">1</span> of <span id="totalPages">10</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // FAQ Toggle Functionality
-        const faqItems = document.querySelectorAll('.faq-item');
+    <!-- Hidden links to PDF files -->
+    <div class="hidden">
+        <a id="pdf-link-1"
+            href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/web/viewer.html?file=https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fpdf.js%2F3.4.120%2Flegacy%2Fweb%2Fcompressed.tracemonkey-pldi-09.pdf"></a>
+        <a id="pdf-link-2" href="./assets/books/TheTimeMachine.pdf"></a>
+        <a id="pdf-link-3"
+            href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/web/viewer.html?file=https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fpdf.js%2F3.4.120%2Flegacy%2Fweb%2Fcompressed.tracemonkey-pldi-09.pdf"></a>
+    </div>
 
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
+    <!-- Audio elements with consistent ID pattern -->
+    <!-- Male voice tracks - Standard quality -->
+    <audio id="audio-male-standard-1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio-male-standard-2" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio-male-standard-3" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-            question.addEventListener('click', () => {
-                // Close all other open FAQ items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                    }
-                });
+    <!-- Male voice tracks - Premium quality -->
+    <audio id="audio-male-premium-1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio-male-premium-2" preload="metadata">
+        <source src="./assets/demo/TheTimeMachine_chapter2_premium_male.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio-male-premium-3" preload="metadata">
+        <source src="./assets/demo/TheTimeMachine_chapter3_premium_male.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-                // Toggle the current FAQ item
-                item.classList.toggle('active');
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function () {
-            // Audio data for each player
-            const audiobooks = [
-                {
-                    id: 1,
-                    title: "Pride and Prejudice - Chapter 1",
-                    artist: "Jane Austen",
-                    src: "https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3",
-                    cover: "/api/placeholder/300/300"
-                },
-                {
-                    id: 2,
-                    title: "The Great Gatsby - Chapter 1",
-                    artist: "F. Scott Fitzgerald",
-                    src: "https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3",
-                    cover: "/api/placeholder/300/300"
-                },
-                {
-                    id: 3,
-                    title: "Sherlock Holmes - A Study in Scarlet",
-                    artist: "Arthur Conan Doyle",
-                    src: "https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3",
-                    cover: "/api/placeholder/300/300"
-                }
-            ];
+    <!-- Female voice tracks - Standard quality -->
+    <audio id="audio-female-standard-1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio-female-standard-2" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio-female-standard-3" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-            // Initialize each player
-            audiobooks.forEach(book => {
-                initPlayer(book);
-            });
+    <!-- Female voice tracks - Premium quality -->
+    <audio id="audio-female-premium-1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio-female-premium-2" preload="metadata">
+        <source src="./assets/demo/TheTimeMachine_chapter2_premium_female.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio-female-premium-3" preload="metadata">
+        <source src="./assets/demo/TheTimeMachine_chapter3_premium_female.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-            function initPlayer(audiobook) {
-                const id = audiobook.id;
-
-                // Create audio element
-                const audio = document.createElement('audio');
-                audio.id = `audio-${id}`;
-
-                // Get elements
-                const playBtn = document.getElementById(`play-btn-${id}`);
-                const prevBtn = document.getElementById(`prev-btn-${id}`);
-                const progressContainer = document.getElementById(`progress-container-${id}`);
-                const progress = document.getElementById(`progress-${id}`);
-                const currentTimeElement = document.getElementById(`current-time-${id}`);
-                const durationElement = document.getElementById(`duration-${id}`);
-                const albumImg = document.getElementById(`album-img-${id}`);
-
-                let isPlaying = false;
-
-                // Load audio
-                function loadAudio() {
-                    audio.src = audiobook.src;
-
-                    // Update album cover
-                    if (audiobook.cover) {
-                        albumImg.src = audiobook.cover;
-                    }
-
-                    // Set initial duration after a short delay
-                    setTimeout(() => {
-                        if (audio.duration) {
-                            durationElement.textContent = formatTime(audio.duration);
-                        }
-                    }, 100);
-                }
-
-                // Play audio
-                function playAudio() {
-                    // Pause all other players first
-                    pauseAllExcept(id);
-
-                    playBtn.textContent = '⏸';
-                    isPlaying = true;
-                    audio.play();
-                }
-
-                // Pause audio
-                function pauseAudio() {
-                    playBtn.textContent = '▶';
-                    isPlaying = false;
-                    audio.pause();
-                }
-
-                // Format time in minutes and seconds
-                function formatTime(seconds) {
-                    const min = Math.floor(seconds / 60);
-                    const sec = Math.floor(seconds % 60);
-                    return `${min}:${sec < 10 ? '0' + sec : sec}`;
-                }
-
-                // Update progress bar
-                function updateProgress(e) {
-                    const { duration, currentTime } = e.srcElement;
-                    if (duration) {
-                        const progressPercent = (currentTime / duration) * 100;
-                        progress.style.width = `${progressPercent}%`;
-                        currentTimeElement.textContent = formatTime(currentTime);
-                        durationElement.textContent = formatTime(duration);
-                    }
-                }
-
-                // Set progress bar on click
-                function setProgress(e) {
-                    const width = this.clientWidth;
-                    const clickX = e.offsetX;
-                    if (audio.duration) {
-                        audio.currentTime = (clickX / width) * audio.duration;
-                    }
-                }
-
-                // Event listeners
-                playBtn.addEventListener('click', () => {
-                    if (isPlaying) {
-                        pauseAudio();
-                    } else {
-                        playAudio();
-                    }
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    // Reset to beginning of current audio
-                    audio.currentTime = 0;
-                    playAudio();
-                });
-
-                audio.addEventListener('timeupdate', updateProgress);
-                audio.addEventListener('ended', () => {
-                    pauseAudio();
-                    audio.currentTime = 0;
-                });
-
-                progressContainer.addEventListener('click', setProgress);
-
-                // Set default volume
-                audio.volume = 0.7;
-
-                // Initialize
-                loadAudio();
-
-                // Append audio element to the document
-                document.body.appendChild(audio);
-
-                // Store references for external functions
-                audio.dataset.id = id;
-                audio.dataset.isPlaying = isPlaying;
-                audio.pauseAudio = pauseAudio;
-            }
-
-            // Function to pause all players except the active one
-            function pauseAllExcept(activeId) {
-                document.querySelectorAll('audio').forEach(audioEl => {
-                    const id = parseInt(audioEl.dataset.id);
-                    if (id !== activeId) {
-                        // Call the pause function
-                        audioEl.pause();
-                        // Update the play button appearance
-                        document.getElementById(`play-btn-${id}`).textContent = '▶';
-                    }
-                });
-            }
-        });
-    </script>
+    <!-- Split JavaScript into modules -->
+    <script src="scripts/smooth-scroll.js"></script>
+    <script src="scripts/faq-accordion.js"></script>
+    <script src="scripts/audio-player.js"></script>
+    <script src="scripts/pdf-viewer.js"></script>
+    <script src="scripts/mobile-menu.js"></script>
 </body>
 
 </html>
