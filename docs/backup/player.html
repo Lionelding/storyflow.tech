@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience Premium Audio</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #222;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .dropdown {
+            position: relative;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            margin-top: 5px;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .gear-icon {
+            margin-right: 10px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-image {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image img {
+            max-width: 100%;
+            max-height: 190px;
+        }
+
+        .card-type {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .card-pages {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .playback-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .play-button {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .download-button {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 6px;
+            background-color: #eee;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #4682B4;
+            border-radius: 3px;
+            transition: width 0.1s ease;
+        }
+
+        .time-display {
+            font-size: 12px;
+            color: #888;
+            margin-left: 10px;
+            min-width: 75px;
+            text-align: right;
+        }
+
+        .examples-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 14px;
+        }
+
+        /* PDF Popup styles */
+        .pdf-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pdf-popup.active {
+            display: flex;
+        }
+
+        .pdf-container {
+            width: 80%;
+            height: 80%;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pdf-header {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pdf-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .pdf-close {
+            cursor: pointer;
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .pdf-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .pdf-footer {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+        }
+
+        .pdf-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .pdf-page-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .pdf-button {
+            padding: 5px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card-image {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            /* Add pointer cursor to indicate it's clickable */
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+            }
+
+            .pdf-container {
+                width: 95%;
+                height: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="examples-button">Examples</button>
+
+    <!-- Hidden links to PDF files - these would be your actual PDF file URLs -->
+    <div style="display: none;">
+        <a id="pdf-link-1"
+            href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/web/viewer.html?file=https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fpdf.js%2F3.4.120%2Flegacy%2Fweb%2Fcompressed.tracemonkey-pldi-09.pdf"></a>
+        <a id="pdf-link-2"
+            href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/web/viewer.html?file=https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fpdf.js%2F3.4.120%2Flegacy%2Fweb%2Fcompressed.tracemonkey-pldi-09.pdf"></a>
+        <a id="pdf-link-3"
+            href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/web/viewer.html?file=https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fpdf.js%2F3.4.120%2Flegacy%2Fweb%2Fcompressed.tracemonkey-pldi-09.pdf"></a>
+    </div>
+
+    <!-- Hidden audio elements -->
+    <!-- Male voice tracks - Standard quality -->
+    <audio id="audio-male-standard-1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio-male-standard-2" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio-male-standard-3" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Male voice tracks - Premium quality -->
+    <audio id="audio-male-premium-1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio-male-premium-2" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio-male-premium-3" preload="metadata">
+        <source src="./assets/demo/TheTimeMachine_chapter3_male.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Female voice tracks - Standard quality -->
+    <audio id="audio-female-standard-1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio-female-standard-2" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio-female-standard-3" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Female voice tracks - Premium quality -->
+    <audio id="audio-female-premium-1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio-female-premium-2" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio-female-premium-3" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+
+    <div class="header">
+        <h1>Experience Premium Audio</h1>
+        <p class="tagline">Listen and compare to discover the rich depth our audio technology delivers.</p>
+
+        <div class="controls">
+            <div class="gear-icon">⚙️</div>
+            <span>Audio Settings:</span>
+            <div class="dropdown" id="quality-dropdown">
+                <span class="selected-option">Premium</span>
+                <span>▼</span>
+                <div class="dropdown-content">
+                    <a href="#" data-value="standard">Standard</a>
+                    <a href="#" data-value="premium">Premium</a>
+                </div>
+            </div>
+            <div class="dropdown" id="voice-dropdown">
+                <span class="selected-option">Voice Type</span>
+                <span>▼</span>
+                <div class="dropdown-content">
+                    <a href="#" data-value="male">Male</a>
+                    <a href="#" data-value="female">Female</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <div class="card-image">
+                <img src="/api/placeholder/300/200" alt="Podcast thumbnail">
+            </div>
+            <div class="card-content">
+                <div class="card-type">Podcast</div>
+                <div class="card-pages">32 Minutes</div>
+                <div class="card-title">Science Today: Episode 42</div>
+                <div class="playback-controls">
+                    <div class="play-button" data-track="1">▶</div>
+                    <div class="download-button" data-track="1">↓</div>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <div class="time-display">0:00 / 0:00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image">
+                <img src="/api/placeholder/300/200" alt="Audiobook thumbnail">
+            </div>
+            <div class="card-content">
+                <div class="card-type">Audiobook</div>
+                <div class="card-pages">245 Minutes</div>
+                <div class="card-title">The Mountain's Secret</div>
+                <div class="playback-controls">
+                    <div class="play-button" data-track="2">▶</div>
+                    <div class="download-button" data-track="2">↓</div>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <div class="time-display">0:00 / 0:00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image">
+                <img src="/api/placeholder/300/200" alt="Learning course thumbnail">
+            </div>
+            <div class="card-content">
+                <div class="card-type">Course</div>
+                <div class="card-pages">18 Minutes</div>
+                <div class="card-title">Effective Communication</div>
+                <div class="playback-controls">
+                    <div class="play-button" data-track="3">▶</div>
+                    <div class="download-button" data-track="3">↓</div>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <div class="time-display">0:00 / 0:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PDF Popup -->
+    <div class="pdf-popup" id="pdfPopup">
+        <div class="pdf-container">
+            <div class="pdf-header">
+                <div class="pdf-title" id="pdfTitle">Document Title</div>
+                <div class="pdf-close" id="pdfClose">×</div>
+            </div>
+            <div class="pdf-content" id="pdfContent">
+                <iframe id="pdfFrame" src="about:blank" style="width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+            <div class="pdf-footer">
+                <div class="pdf-controls">
+                    <button class="pdf-button" id="prevPage">Previous</button>
+                    <button class="pdf-button" id="nextPage">Next</button>
+                </div>
+                <div class="pdf-page-info">
+                    Page <span id="currentPage">1</span> of <span id="totalPages">10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Make dropdowns functional
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all dropdown elements
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            // Add click event to each dropdown
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', function (e) {
+                    // Toggle active class on clicked dropdown
+                    this.classList.toggle('active');
+
+                    // Close other dropdowns
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+
+                    e.stopPropagation();
+                });
+
+                // Add click event to dropdown options
+                const options = dropdown.querySelectorAll('.dropdown-content a');
+                options.forEach(option => {
+                    option.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Update selected option text
+                        const selectedText = this.textContent;
+                        dropdown.querySelector('.selected-option').textContent = selectedText;
+
+                        // Close dropdown
+                        dropdown.classList.remove('active');
+
+                        // Log the selection (you can expand this to actually change audio settings)
+                        console.log(`Selected option: ${selectedText}, Value: ${this.dataset.value}`);
+                    });
+                });
+            });
+
+            // Close dropdown when clicking elsewhere on the page
+            document.addEventListener('click', function () {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+
+            // Audio player functionality
+            // Get all playback elements
+            const playButtons = document.querySelectorAll('.play-button');
+            const progressBars = document.querySelectorAll('.progress-bar');
+            const progressContainers = document.querySelectorAll('.progress-container');
+            const timeDisplays = document.querySelectorAll('.time-display');
+            const downloadButtons = document.querySelectorAll('.download-button');
+
+            // Track current playing audio
+            let currentlyPlaying = null;
+
+            // Set default voice type and quality
+            let currentVoiceType = 'male';
+            let currentQuality = 'premium';
+
+            // Format time in MM:SS format
+            function formatTime(seconds) {
+                seconds = Math.floor(seconds);
+                const minutes = Math.floor(seconds / 60);
+                seconds = seconds % 60;
+                return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+
+            // Voice type dropdown functionality
+            const voiceDropdown = document.getElementById('voice-dropdown');
+            const voiceOptions = voiceDropdown.querySelectorAll('.dropdown-content a');
+
+            voiceOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    const newVoiceType = this.getAttribute('data-value');
+
+                    // Update current voice type
+                    currentVoiceType = newVoiceType;
+
+                    // Update all play buttons to use the new voice type
+                    updateAudioSources();
+
+                    console.log(`Changed voice type to: ${currentVoiceType}`);
+                });
+            });
+
+            // Quality dropdown functionality
+            const qualityDropdown = document.getElementById('quality-dropdown');
+            const qualityOptions = qualityDropdown.querySelectorAll('.dropdown-content a');
+
+            qualityOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    const newQuality = this.getAttribute('data-value');
+
+                    // Update current quality
+                    currentQuality = newQuality;
+
+                    // Update all play buttons to use the new quality
+                    updateAudioSources();
+
+                    console.log(`Changed quality to: ${currentQuality}`);
+                });
+            });
+
+            // Function to update audio sources based on current voice type and quality
+            function updateAudioSources() {
+                // Update all play buttons
+                playButtons.forEach(button => {
+                    const trackNumber = button.getAttribute('data-track');
+                    button.setAttribute('data-audio', `audio-${currentVoiceType}-${currentQuality}-${trackNumber}`);
+
+                    // If this track is currently playing, pause it
+                    if (currentlyPlaying) {
+                        currentlyPlaying.pause();
+                        button.textContent = '▶';
+                        currentlyPlaying = null;
+                    }
+                });
+            }
+
+            // Set up audio players
+            playButtons.forEach((button, index) => {
+                // Set initial data-audio attribute based on current voice type and quality
+                const trackNumber = button.getAttribute('data-track');
+                button.setAttribute('data-audio', `audio-${currentVoiceType}-${currentQuality}-${trackNumber}`);
+
+                const progressBar = progressBars[index];
+                const progressContainer = progressContainers[index];
+                const timeDisplay = timeDisplays[index];
+                const downloadButton = downloadButtons[index];
+
+                // Play/pause button click event
+                button.addEventListener('click', function () {
+                    const audioId = this.getAttribute('data-audio');
+                    const audio = document.getElementById(audioId);
+
+                    if (!audio) {
+                        console.error(`Audio element with ID ${audioId} not found`);
+                        return;
+                    }
+
+                    // Set up events for this audio element if not already set
+                    if (!audio._eventsSet) {
+                        // Initial time display
+                        if (audio.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+                            timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+                        } else {
+                            audio.addEventListener('loadedmetadata', function () {
+                                timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+                            });
+                        }
+
+                        // Update progress bar and time display during playback
+                        audio.addEventListener('timeupdate', function () {
+                            const currentTime = audio.currentTime;
+                            const duration = audio.duration;
+                            const percentage = (currentTime / duration) * 100;
+
+                            progressBar.style.width = `${percentage}%`;
+                            timeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+
+                            // If audio has ended, reset button
+                            if (currentTime >= duration) {
+                                button.textContent = '▶';
+                                currentlyPlaying = null;
+                            }
+                        });
+
+                        audio._eventsSet = true;
+                    }
+
+                    // If there's another audio playing, pause it
+                    if (currentlyPlaying && currentlyPlaying !== audio) {
+                        currentlyPlaying.pause();
+                        // Reset the button for previously playing audio
+                        playButtons.forEach(btn => {
+                            btn.textContent = '▶';
+                        });
+                    }
+
+                    if (audio.paused) {
+                        audio.play().catch(e => {
+                            console.error('Error playing audio:', e);
+                        });
+                        button.textContent = '❚❚';
+                        currentlyPlaying = audio;
+                    } else {
+                        audio.pause();
+                        button.textContent = '▶';
+                        currentlyPlaying = null;
+                    }
+                });
+
+                // Initial setup of audio elements for this track
+                for (const voiceType of ['male', 'female']) {
+                    for (const quality of ['standard', 'premium']) {
+                        const audioId = `audio-${voiceType}-${quality}-${trackNumber}`;
+                        const audio = document.getElementById(audioId);
+
+                        if (audio) {
+                            // Load metadata for time display
+                            audio.addEventListener('loadedmetadata', function () {
+                                // Only update if this is the current voice type and quality
+                                if (voiceType === currentVoiceType && quality === currentQuality) {
+                                    timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+                                }
+                            });
+                        }
+                    }
+                }
+
+                // Click on progress bar to seek
+                progressContainer.addEventListener('click', function (e) {
+                    const audioId = button.getAttribute('data-audio');
+                    const audio = document.getElementById(audioId);
+
+                    if (!audio) return;
+
+                    const rect = progressContainer.getBoundingClientRect();
+                    const position = (e.clientX - rect.left) / rect.width;
+
+                    audio.currentTime = position * audio.duration;
+                });
+
+                // Download button
+                downloadButton.addEventListener('click', function () {
+                    const audioId = button.getAttribute('data-audio');
+                    const audio = document.getElementById(audioId);
+
+                    if (!audio) return;
+
+                    // Create a temporary link and trigger download
+                    const link = document.createElement('a');
+                    link.href = audio.querySelector('source').src;
+                    link.download = `${currentVoiceType}-track-${trackNumber}.mp3`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            });
+
+            // PDF Popup functionality
+            const cardImages = document.querySelectorAll('.card-image');
+            const pdfPopup = document.getElementById('pdfPopup');
+            const pdfClose = document.getElementById('pdfClose');
+            const pdfTitle = document.getElementById('pdfTitle');
+            const prevPage = document.getElementById('prevPage');
+            const nextPage = document.getElementById('nextPage');
+            const currentPage = document.getElementById('currentPage');
+            const totalPages = document.getElementById('totalPages');
+            const pdfFrame = document.getElementById('pdfFrame');
+
+            // PDF links
+            const pdfLinks = [
+                document.getElementById('pdf-link-1').href,
+                document.getElementById('pdf-link-2').href,
+                document.getElementById('pdf-link-3').href
+            ];
+
+            // Variables to track current PDF state
+            let currentPageNum = 1;
+            let maxPages = 10; // Default value
+
+            // Open PDF popup when clicking on card image
+            cardImages.forEach((cardImage, index) => {
+                cardImage.addEventListener('click', function () {
+                    // Get title from the card
+                    const cardTitle = this.closest('.card').querySelector('.card-title').textContent;
+                    pdfTitle.textContent = cardTitle;
+
+                    // Load the PDF file
+                    pdfFrame.src = pdfLinks[index % pdfLinks.length];
+
+                    // Reset to page 1
+                    currentPageNum = 1;
+                    currentPage.textContent = currentPageNum;
+
+                    // Set total pages based on card index (just for demo)
+                    maxPages = 18;
+                    totalPages.textContent = maxPages;
+
+                    // Show popup
+                    pdfPopup.classList.add('active');
+
+                    // Prevent scrolling on the body
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close PDF popup
+            pdfClose.addEventListener('click', function () {
+                pdfPopup.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close popup when clicking outside the PDF container
+            pdfPopup.addEventListener('click', function (e) {
+                if (e.target === pdfPopup) {
+                    pdfPopup.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Previous page button
+            prevPage.addEventListener('click', function () {
+                if (currentPageNum > 1) {
+                    currentPageNum--;
+                    currentPage.textContent = currentPageNum;
+                    // Send message to PDF.js viewer to go to previous page
+                    try {
+                        pdfFrame.contentWindow.postMessage({ action: 'previousPage' }, '*');
+                    } catch (e) {
+                        console.log('Could not navigate to previous page:', e);
+                    }
+                }
+            });
+
+            // Next page button
+            nextPage.addEventListener('click', function () {
+                if (currentPageNum < maxPages) {
+                    currentPageNum++;
+                    currentPage.textContent = currentPageNum;
+                    // Send message to PDF.js viewer to go to next page
+                    try {
+                        pdfFrame.contentWindow.postMessage({ action: 'nextPage' }, '*');
+                    } catch (e) {
+                        console.log('Could not navigate to next page:', e);
+                    }
+                }
+            });
+
+            // Keyboard navigation for PDF
+            document.addEventListener('keydown', function (e) {
+                if (!pdfPopup.classList.contains('active')) return;
+
+                if (e.key === 'Escape') {
+                    pdfPopup.classList.remove('active');
+                    document.body.style.overflow = '';
+                } else if (e.key === 'ArrowLeft' && currentPageNum > 1) {
+                    currentPageNum--;
+                    currentPage.textContent = currentPageNum;
+                } else if (e.key === 'ArrowRight' && currentPageNum < maxPages) {
+                    currentPageNum++;
+                    currentPage.textContent = currentPageNum;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
