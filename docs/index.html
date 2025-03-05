@@ -4,15 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storyflow - AI eBook to Audiobook</title>
-    <!-- External CSS file -->
+    <title>StoryFlow - AI eBook to Audiobook</title>
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/logo.png">
+
+    <!-- External CSS files -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="logo-animation.css">
 </head>
 
 <body>
     <div class="menu-overlay" id="menuOverlay"></div>
     <header>
-        <div class="logo">Storyflow</div>
+        <div class="logo-container">
+            <div class="logo-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <!-- Book base -->
+                    <path class="book-part" d="M20 70 L80 70 L80 95 C80 95, 50 90, 20 95 Z" fill="#001F3F" />
+                    <rect class="book-part" x="20" y="70" width="60" height="5" fill="#001F3F" />
+                    <!-- Book lines -->
+                    <line x1="25" y1="78" x2="75" y2="78" stroke="#FF8C00" stroke-width="1.5" />
+                    <line x1="25" y1="83" x2="75" y2="83" stroke="#FF8C00" stroke-width="1.5" />
+                    <line x1="25" y1="88" x2="75" y2="88" stroke="#FF8C00" stroke-width="1.5" />
+                    <!-- Mast -->
+                    <rect class="mast-part" x="45" y="30" width="3" height="40" fill="#001F3F" />
+                    <!-- Sail/Flag -->
+                    <path class="sail-part" d="M48 30 C60 40, 60 55, 48 65" fill="none" stroke="#001F3F"
+                        stroke-width="2" />
+                    <path class="sail-part" d="M45 30 C33 40, 33 55, 45 65" fill="none" stroke="#001F3F"
+                        stroke-width="2" />
+                    <!-- Flag top -->
+                    <path class="sail-part" d="M48 30 L60 30 L55 35 L48 30" fill="#001F3F" />
+                </svg>
+            </div>
+            <span class="logo-text">StoryFlow</span>
+        </div>
         <div class="mobile-menu-toggle" id="mobileMenuToggle">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -32,11 +58,11 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Unlock Stories That Breathe</h1>
-            <p>Storyflow transforms eBooks into audiobooks with AI voices so natural, warm, and human.</p>
+            <p>StoryFlow transforms eBooks into audiobooks with AI voices so natural, warm, and human.</p>
             <a href="#waitlist" class="cta-button">Join Waitlist</a>
         </div>
         <div class="hero-image">
-            <img src="/api/placeholder/400/320" alt="Storyflow App Screenshot">
+            <img src="/api/placeholder/400/320" alt="StoryFlow App Screenshot">
         </div>
     </section>
 
@@ -125,7 +151,7 @@
                 <span class="selected-option">Premium</span>
                 <span>▼</span>
                 <div class="dropdown-content">
-                    <a href="#" data-value="standard">Standard</a>
+                    <!-- <a href="#" data-value="standard">Standard</a> -->
                     <a href="#" data-value="premium">Premium</a>
                 </div>
             </div>
@@ -143,12 +169,12 @@
             <!-- Audio cards with a consistent structure -->
             <div class="audio-card card">
                 <div class="card-image">
-                    <img src="/api/placeholder/300/200" alt="Podcast thumbnail">
+                    <img src="./assets/books/FolkTalesfromManyLands_cover.jpg" alt="Podcast thumbnail">
                 </div>
                 <div class="card-content">
-                    <div class="card-type">Podcast</div>
-                    <div class="card-pages">32 Minutes</div>
-                    <div class="card-title">Science Today: Episode 42</div>
+                    <div class="card-type">Fairy Tale, Short Story</div>
+                    <div class="card-pages">3 Minutes</div>
+                    <div class="card-title">The Lion and The Jackal</div>
                     <div class="playback-controls">
                         <div class="play-button" data-track="1" aria-label="Play">▶</div>
                         <div class="download-button" data-track="1" aria-label="Download">↓</div>
@@ -166,8 +192,8 @@
                 </div>
                 <div class="card-content">
                     <div class="card-type">Audiobook</div>
-                    <div class="card-pages">245 Minutes</div>
-                    <div class="card-title">The Time Machine (Chapter 2)</div>
+                    <div class="card-pages">14 Minutes</div>
+                    <div class="card-title">The Time Machine (Chapter 3)</div>
                     <div class="playback-controls">
                         <div class="play-button" data-track="2" aria-label="Play">▶</div>
                         <div class="download-button" data-track="2" aria-label="Download">↓</div>
@@ -181,12 +207,12 @@
 
             <div class="audio-card card">
                 <div class="card-image">
-                    <img src="/api/placeholder/300/200" alt="Learning course thumbnail">
+                    <img src="./assets/books/TheTimeMachine_cover.jpg" alt="The Time Machine">
                 </div>
                 <div class="card-content">
-                    <div class="card-type">Course</div>
-                    <div class="card-pages">18 Minutes</div>
-                    <div class="card-title">Effective Communication</div>
+                    <div class="card-type">Sci-Fi</div>
+                    <div class="card-pages">14 Minutes</div>
+                    <div class="card-title">The Time Machine (Chapter 3)</div>
                     <div class="playback-controls">
                         <div class="play-button" data-track="3" aria-label="Play">▶</div>
                         <div class="download-button" data-track="3" aria-label="Download">↓</div>
@@ -203,7 +229,7 @@
     <section id="waitlist" class="waitlist">
         <div class="waitlist-container">
             <h2>Join Our Waiting List</h2>
-            <p>Be the first to know when Storyflow launches. Get early access and exclusive offers.</p>
+            <p>Be the first to know when StoryFlow launches. Get early access and exclusive offers.</p>
 
             <div class="cta-container">
                 <a href="https://forms.gle/9aH7fwmFr3FkgYnH8" target="_blank" class="cta-button">Join Waitlist</a>
@@ -216,11 +242,11 @@
         <h2>Hi there!</h2>
         <div class="team-container">
             <div class="team-description">
-                <h3>About storyflow</h3>
+                <h3>About StoryFlow</h3>
                 <p>
                     "Hi there! I'm Liqiang. I've always loved getting lost in a good book, but as someone juggling daily
                     routines—like housecleaning or driving to work—I wished I could turn those mundane moments into
-                    storytime. That spark of frustration led to Storyflow. Over the past two years, what started as a
+                    storytime. That spark of frustration led to StoryFlow. Over the past two years, what started as a
                     personal experiment (fueled by grocery-store commutes!) has grown into a project I'm thrilled to
                     share. My hope? That it lets you reclaim those 'in-between' moments and turn them into adventures.
                     Happy listening!"
@@ -228,7 +254,7 @@
             </div>
             <div class="team-photo">
                 <div class="profile-image">
-                    <img src="./assets/profile.jpg" alt="Liqiang Ding, Founder of Storyflow">
+                    <img src="./assets/profile.jpg" alt="Liqiang Ding, Founder of StoryFlow">
                 </div>
                 <p class="profile-name">Liqiang Ding, Founder</p>
             </div>
@@ -249,7 +275,7 @@
             <div class="faq-item">
                 <div class="faq-question">Which file formats are supported for conversion?</div>
                 <div class="faq-answer">
-                    <p>Right now, Storyflow supports PDF and EPUB files. We're always working to support more formats,
+                    <p>Right now, StoryFlow supports PDF and EPUB files. We're always working to support more formats,
                         so if there's a specific file type you'd like us to include, let us know—we'd love to hear your
                         suggestions!</p>
                 </div>
@@ -264,7 +290,7 @@
             <div class="faq-item">
                 <div class="faq-question">In which languages can I upload files?</div>
                 <div class="faq-answer">
-                    <p>Storyflow is optimized for English. While our AI can process other languages, accuracy and
+                    <p>StoryFlow is optimized for English. While our AI can process other languages, accuracy and
                         pronunciation may vary. Stay tuned—we're working hard to add more language support soon!</p>
                 </div>
             </div>
@@ -286,7 +312,7 @@
                 <div class="faq-question">What happens to my data?</div>
                 <div class="faq-answer">
                     <p>All data transfers use <strong>encrypted connections</strong> (SSL/TLS) to protect your
-                        files. Storyflow does not store any user data. Everything you upload will be securely deleted
+                        files. StoryFlow does not store any user data. Everything you upload will be securely deleted
                         after processing.</p>
                 </div>
             </div>
@@ -296,7 +322,11 @@
     <footer>
         <div class="footer-content">
             <div class="footer-header">
-                <div class="footer-logo">Storyflow</div>
+                <div class="footer-logo">
+                    <div class="logo-container">
+                        <span class="logo-text">StoryFlow</span>
+                    </div>
+                </div>
                 <div class="social-icons">
                     <a href="#" aria-label="TikTok">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -349,7 +379,7 @@
             </div>
 
             <div class="footer-copyright">
-                <p>&copy; 2025 Storyflow. All rights reserved.</p>
+                <p>&copy; 2025 StoryFlow. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -365,44 +395,28 @@
                 <iframe id="pdfFrame" src="about:blank" title="PDF Viewer"></iframe>
             </div>
             <div class="pdf-footer">
-                <div class="pdf-controls">
+                <!-- <div class="pdf-controls">
                     <button class="pdf-button" id="prevPage">Previous</button>
                     <button class="pdf-button" id="nextPage">Next</button>
                 </div>
                 <div class="pdf-page-info">
                     Page <span id="currentPage">1</span> of <span id="totalPages">10</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 
     <!-- Hidden links to PDF files -->
     <div class="hidden">
-        <a id="pdf-link-1"
-            href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/web/viewer.html?file=https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fpdf.js%2F3.4.120%2Flegacy%2Fweb%2Fcompressed.tracemonkey-pldi-09.pdf"></a>
+        <a id="pdf-link-1" href="./assets/books/ForkTalesfromManyLands.pdf"></a>
         <a id="pdf-link-2" href="./assets/books/TheTimeMachine.pdf"></a>
-        <a id="pdf-link-3"
-            href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/web/viewer.html?file=https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fpdf.js%2F3.4.120%2Flegacy%2Fweb%2Fcompressed.tracemonkey-pldi-09.pdf"></a>
+        <a id="pdf-link-3" href="./assets/books/TheTimeMachine.pdf"></a>
     </div>
 
     <!-- Audio elements with consistent ID pattern -->
-    <!-- Male voice tracks - Standard quality -->
-    <audio id="audio-male-standard-1" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="audio-male-standard-2" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="audio-male-standard-3" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
     <!-- Male voice tracks - Premium quality -->
     <audio id="audio-male-premium-1" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+        <source src="./assets/demo/ForkTalesfromManyLands_premium_male.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <audio id="audio-male-premium-2" preload="metadata">
@@ -410,35 +424,21 @@
         Your browser does not support the audio element.
     </audio>
     <audio id="audio-male-premium-3" preload="metadata">
-        <source src="./assets/demo/TheTimeMachine_chapter3_premium_male.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <!-- Female voice tracks - Standard quality -->
-    <audio id="audio-female-standard-1" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="audio-female-standard-2" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="audio-female-standard-3" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" type="audio/mpeg">
+        <source src="./assets/demo/TheTimeMachine_Chapter2_premium_male.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <!-- Female voice tracks - Premium quality -->
     <audio id="audio-female-premium-1" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" type="audio/mpeg">
+        <source src="./assets/demo/ForkTalesfromManyLands_premium_female.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <audio id="audio-female-premium-2" preload="metadata">
-        <source src="./assets/demo/TheTimeMachine_chapter2_premium_female.mp3" type="audio/mpeg">
+        <source src="./assets/demo/TheTimeMachine_Chapter2_premium_female.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <audio id="audio-female-premium-3" preload="metadata">
-        <source src="./assets/demo/TheTimeMachine_chapter3_premium_female.mp3" type="audio/mpeg">
+        <source src="./assets/demo/TheTimeMachine_Chapter2_premium_female.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
