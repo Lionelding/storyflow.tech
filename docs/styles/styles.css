@@ -333,13 +333,20 @@ header .nav-links a:hover {
 .card-container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    /* Changed from wrap to nowrap */
     gap: 20px;
+    width: 100%;
+    padding: 20px;
 }
 
 .audio-card {
-    flex: 1;
-    min-width: 300px;
+    flex: 1 1 calc(50% - 20px);
+    /* Set to take up roughly half the container minus gap */
+    max-width: calc(50% - 10px);
+    /* Ensure maximum width */
+    min-width: 250px;
+    /* Reduced from 300px to allow more flexibility */
     background: white;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -846,7 +853,12 @@ footer {
 
     /* Cards */
     .card-container {
-        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .audio-card {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 
     /* PDF Popup */

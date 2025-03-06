@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // PDF links and their start page configuration
     const pdfConfig = [
         { url: document.getElementById('pdf-link-1')?.href, startPage: 19 },
-        { url: document.getElementById('pdf-link-2')?.href, startPage: 6 },
+        // { url: document.getElementById('pdf-link-2')?.href, startPage: 6 },
         { url: document.getElementById('pdf-link-3')?.href, startPage: 12 }
     ];
 
