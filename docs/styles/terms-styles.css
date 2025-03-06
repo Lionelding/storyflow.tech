@@ -1,0 +1,361 @@
+/* StoryFlow Terms of Service Page - Matching Main Site Styling */
+
+:root {
+    --primary: #001F3F;
+    /* Navy blue like the book in the logo */
+    --primary-light: #FF8C00;
+    /* Orange like the book lines */
+    --background: #ffffff;
+    --text: #1f2937;
+    --text-light: #4b5563;
+    --border: #e5e7eb;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    line-height: 1.7;
+    background-color: var(--background);
+}
+
+/* === HEADER STYLES === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 90%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+}
+
+.logo-text {
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--primary);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-light);
+}
+
+/* === TERMS CONTAINER STYLES === */
+.terms-container {
+    max-width: 900px;
+    margin: 120px auto 60px;
+    /* Adjusted to account for fixed header */
+    padding: 2rem;
+    background-color: #f9fafb;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.terms-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.terms-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.terms-header p.last-updated {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.terms-content {
+    padding: 0 1rem;
+}
+
+.terms-content h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.terms-content p {
+    margin-bottom: 1.5rem;
+    font-size: 16px;
+}
+
+.terms-content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.terms-content ul li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    font-size: 16px;
+}
+
+.terms-content strong {
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+/* === FOOTER STYLES === */
+footer {
+    background: var(--text);
+    color: white;
+    padding: 2rem 0;
+    font-size: 1rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-logo .logo-container {
+    margin-bottom: 0;
+}
+
+.footer-logo .logo-text {
+    color: white;
+    font-size: 24px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icons a {
+    color: white;
+    transition: opacity 0.3s;
+}
+
+.social-icons a:hover {
+    opacity: 0.8;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.footer-section p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-section a:hover {
+    opacity: 0.8;
+}
+
+.footer-copyright {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* === CTA BUTTON === */
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 5%;
+        position: relative;
+        width: 90%;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    nav {
+        position: absolute;
+        right: 5%;
+        top: 70px;
+        background-color: white;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: none;
+    }
+
+    nav.active {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .terms-container {
+        margin: 20px 10px;
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .terms-header h1 {
+        font-size: 2rem;
+    }
+
+    .footer-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .social-icons {
+        margin-top: 1rem;
+        justify-content: center;
+    }
+
+    .footer-links {
+        text-align: center;
+    }
+}
+
+/* Menu overlay */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+/* SVG Animation Styles */
+.book-part,
+.mast-part,
+.sail-part {
+    transform-origin: center;
+    transition: all 0.5s ease;
+}
+
+.logo-container:hover .book-part {
+    fill: var(--primary-light);
+}
+
+.logo-container:hover .mast-part {
+    transform: translateY(-3px);
+}
+
+.logo-container:hover .sail-part {
+    stroke: var(--primary-light);
+    fill: var(--primary-light);
+}

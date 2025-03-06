@@ -4,170 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storyflow - Privacy Policy</title>
+    <title>StoryFlow - Privacy Policy</title>
     <!-- Favicon -->
     <link rel="icon" href="./assets/logo.png">
-    <style>
-        /* Modern Red & Orange Theme Styles */
-        :root {
-            --primary: #ef4444;
-            --primary-light: #f97316;
-            --background: #ffffff;
-            --light-bg: #f9fafb;
-            --text: #1f2937;
-            --text-light: #4b5563;
-            --border: #e5e7eb;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text);
-            line-height: 1.7;
-            background-color: var(--background);
-        }
-
-        header {
-            background: var(--background);
-            color: var(--text);
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        header .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        header .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-        }
-
-        header .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        header .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .privacy-container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: var(--light-bg);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-
-        .privacy-header {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .privacy-header h1 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .privacy-header p.last-updated {
-            font-size: 1rem;
-            color: var(--text-light);
-            font-style: italic;
-        }
-
-        .privacy-content {
-            padding: 0 1rem;
-        }
-
-        .privacy-content h2 {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-            text-align: left;
-        }
-
-        .privacy-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .privacy-content ul {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-        }
-
-        .privacy-content ul li {
-            margin-bottom: 0.75rem;
-            position: relative;
-        }
-
-        .privacy-content strong {
-            color: var(--primary);
-        }
-
-        .contact-section {
-            background-color: var(--background);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            border: 1px solid var(--border);
-        }
-
-        footer {
-            background: var(--text);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            font-size: 1rem;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .privacy-container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            header {
-                flex-direction: column;
-                padding: 1rem;
-            }
-
-            header .nav-links {
-                margin-top: 1rem;
-                padding: 0;
-            }
-        }
-    </style>
+    <!-- External CSS files -->
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/privacy-styles.css">
+    <link rel="stylesheet" href="./styles/logo-animation.css">
 </head>
 
 <body>
+    <div class="menu-overlay" id="menuOverlay"></div>
     <header>
-        <div class="logo">Storyflow</div>
-        <ul class="nav-links">
-            <li><a href="./index.html#features">Features</a></li>
-            <li><a href="./index.html#how-it-works">How It Works</a></li>
-            <li><a href="./index.html#audiobooks">Sample Audiobooks</a></li>
-            <li><a href="./index.html#faq">FAQ</a></li>
-            <li><a href="./index.html#waitlist">Join Waitlist</a></li>
-        </ul>
+        <div class="logo-container">
+            <div class="logo-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <!-- Book base -->
+                    <path class="book-part" d="M20 70 L80 70 L80 95 C80 95, 50 90, 20 95 Z" fill="#001F3F" />
+                    <rect class="book-part" x="20" y="70" width="60" height="5" fill="#001F3F" />
+                    <!-- Book lines -->
+                    <line x1="25" y1="78" x2="75" y2="78" stroke="#FF8C00" stroke-width="1.5" />
+                    <line x1="25" y1="83" x2="75" y2="83" stroke="#FF8C00" stroke-width="1.5" />
+                    <line x1="25" y1="88" x2="75" y2="88" stroke="#FF8C00" stroke-width="1.5" />
+                    <!-- Mast -->
+                    <rect class="mast-part" x="45" y="30" width="3" height="40" fill="#001F3F" />
+                    <!-- Sail/Flag -->
+                    <path class="sail-part" d="M48 30 C60 40, 60 55, 48 65" fill="none" stroke="#001F3F"
+                        stroke-width="2" />
+                    <path class="sail-part" d="M45 30 C33 40, 33 55, 45 65" fill="none" stroke="#001F3F"
+                        stroke-width="2" />
+                    <!-- Flag top -->
+                    <path class="sail-part" d="M48 30 L60 30 L55 35 L48 30" fill="#001F3F" />
+                </svg>
+            </div>
+            <span class="logo-text">StoryFlow</span>
+        </div>
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html#features">Features</a></li>
+                <li><a href="./index.html#how-it-works">How It Works</a></li>
+                <li><a href="./index.html#audiobooks">Sample Audiobooks</a></li>
+                <li><a href="./index.html#faq">FAQ</a></li>
+                <li><a href="./index.html#waitlist">Join Waitlist</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="privacy-container">
@@ -177,7 +62,7 @@
         </div>
 
         <div class="privacy-content">
-            <p>We at <strong>Storyflow</strong> are committed to protecting your privacy. This Privacy Policy outlines
+            <p>We at <strong>StoryFlow</strong> are committed to protecting your privacy. This Privacy Policy outlines
                 how we handle your data when you use our service to convert eBooks into audiobooks.</p>
 
             <h2>Information We Collect</h2>
@@ -220,13 +105,15 @@
     </div>
 
     <footer>
-        <div class="footer-content" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-            <div
-                style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
-                <div class="footer-logo" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Storyflow
+        <div class="footer-content">
+            <div class="footer-header">
+                <div class="footer-logo">
+                    <div class="logo-container">
+                        <span class="logo-text">StoryFlow</span>
+                    </div>
                 </div>
-                <div class="social-icons" style="display: flex; gap: 1.5rem;">
-                    <a href="#" style="color: white; font-size: 1.25rem;">
+                <div class="social-icons">
+                    <a href="#" aria-label="TikTok">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -234,7 +121,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" style="color: white; font-size: 1.25rem;">
+                    <a href="https://www.youtube.com/@StoryflowTech" aria-label="YouTube">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -243,7 +130,7 @@
                             <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
                         </svg>
                     </a>
-                    <a href="#" style="color: white; font-size: 1.25rem;">
+                    <a href="#" aria-label="Twitter">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -251,7 +138,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" style="color: white; font-size: 1.25rem;">
+                    <a href="https://www.linkedin.com/company/storyflowtech" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
@@ -263,28 +150,27 @@
                 </div>
             </div>
 
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 1.5rem;">
-                <div style="flex: 1; min-width: 200px; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Contact</h3>
-                    <p style="margin-bottom: 0.5rem;">info@storyflow.com</p>
-                    <p style="margin-bottom: 0.5rem;">Montreal, Canada</p>
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>info@storyflow.com</p>
+                    <p>Montreal, Canada</p>
                 </div>
-                <div style="flex: 1; min-width: 200px; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Legal</h3>
-                    <p style="margin-bottom: 0.5rem;"><a href="./privacy.html"
-                            style="color: white; text-decoration: none;">Privacy
-                            Policy</a></p>
-                    <p style="margin-bottom: 0.5rem;"><a href="./terms_of_service.html"
-                            style="color: white; text-decoration: none;">Terms of
-                            Service</a></p>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <p><a href="./privacy.html">Privacy Policy</a></p>
+                    <p><a href="./terms_of_service.html">Terms of Service</a></p>
                 </div>
             </div>
 
-            <div style="text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.2);">
-                <p>&copy; 2025 Storyflow. All rights reserved.</p>
+            <div class="footer-copyright">
+                <p>&copy; 2025 StoryFlow. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Add mobile menu JavaScript to match main page -->
+    <script src="scripts/mobile-menu.js"></script>
 </body>
 
 </html>
