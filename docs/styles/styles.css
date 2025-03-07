@@ -376,6 +376,49 @@ header .nav-links a:hover {
     max-height: 190px;
 }
 
+.card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image::before {
+    content: "Click to read me";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 31, 63, 0.7);
+    /* Using the primary color with opacity */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.card-image:hover::before {
+    opacity: 1;
+}
+
+.card-image img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.card-image:hover img {
+    transform: scale(1.05);
+    filter: blur(2px);
+}
+
+/* Ensure the card image remains clickable */
+.card-image {
+    cursor: pointer;
+}
+
 .card-type {
     font-size: 14px;
     color: #666;
@@ -913,5 +956,19 @@ footer {
     * {
         transition: none !important;
         animation: none !important;
+    }
+}
+
+/* Accessibility enhancement for the effect */
+@media (prefers-reduced-motion: reduce) {
+
+    .card-image::before,
+    .card-image img {
+        transition: none;
+    }
+
+    .card-image:hover img {
+        transform: none;
+        filter: none;
     }
 }
